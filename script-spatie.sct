@@ -1,0 +1,45 @@
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
+
+
+$role = Role::create(['name' => 'Admin']);
+
+$permission = Permission::create(['name' => 'edit_users']);
+
+$role->givePermissionTo($permission);
+
+$permission = Permission::create(['name' => 'cerrar_pedido_incompleto']);
+
+$role->givePermissionTo($permission);
+
+
+
+$role = Role::create(['name' => 'Maquinista']);
+
+$permission = Permission::create(['name' => 'pedidos']);
+
+$role->givePermissionTo($permission);
+
+
+
+
+$role = Role::create(['name' => 'Almacen']);
+
+$permission = Permission::create(['name' => 'cerrar-pedidos']);
+
+$role->givePermissionTo($permission);
+
+
+
+//
+
+use User;
+
+$user = User::where('name','alexvaldez077b')->first();
+
+$user->can('edit_users');
+
+$user->assignRole('Admin');
+
+
